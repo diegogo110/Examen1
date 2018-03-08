@@ -10,15 +10,26 @@
 	   .word 7,8,9
 	R: .word 0,0,0
 .text
-	la $s0, V
-	la $s1, M
-	la $s2, R
-	ori $s3, 0	#i
-	ori $s4, 0 	#j
-	ori $t1	#tamaño i
-	ori $t2	#tamaño j
-
+	ori $s1, 0	#i
+	ori $s2, 0 	#j
+	ori $s3, 3	#tamaÃ±o i y j -> 3 
+	ori $s4, 0	#index i	12
+	ori $s5, 0	#index j	4 
+	
+	
 main:	#for(i =0 i<3 ;i++)
-	beq $s3,
-
+	beq $s1, $s3, end
+	add $s1,$s1,1
+	
+	#for (j=0 ,i<3 ,i++)
+for2:	beq $s2, $s3, continue
+	add $s2,$s2,1
+	lw $s6,V($s4)	#t1 V
+	lw $t7,M($t5)
+	add $s5,$s5,4
+	mult	
+	
+	j for2
+contine:	add $s4,$s4,4
+	j main:
 end:
