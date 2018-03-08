@@ -19,13 +19,13 @@
 	
 main:	#for(i =0 i<3 ;i++)
 	beq $s1, $s3, end
-	add $s1,$s1,1
+	add $s2,$zero,0
 
 	#for (j=0 ,i<3 ,i++)
 for2:	beq $s2, $s3, continue
 	add $s2,$s2,1
 	lw $s6,V($s4)	#t1 V
-	lw $s7,M($t5)
+	lw $s7,M($s5)
 	add $s5,$s5,4
 	mul $s6, $s6,$s7
 	lw $t2,R($s4)
@@ -34,5 +34,6 @@ for2:	beq $s2, $s3, continue
 	j for2
 
 continue:	add $s4,$s4,4
+	add $s1,$s1,1
 	j main
 end:
