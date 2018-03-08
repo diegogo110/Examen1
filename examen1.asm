@@ -13,23 +13,26 @@
 	ori $s1, 0	#i
 	ori $s2, 0 	#j
 	ori $s3, 3	#tamaño i y j -> 3 
-	ori $s4, 0	#index i	12
-	ori $s5, 0	#index j	4 
+	ori $s4, 0	#index i	
+	ori $s5, 0	#index j	 
 	
 	
 main:	#for(i =0 i<3 ;i++)
 	beq $s1, $s3, end
 	add $s1,$s1,1
-	
+
 	#for (j=0 ,i<3 ,i++)
 for2:	beq $s2, $s3, continue
 	add $s2,$s2,1
 	lw $s6,V($s4)	#t1 V
-	lw $t7,M($t5)
+	lw $s7,M($t5)
 	add $s5,$s5,4
-	mult	
-	
+	mul $s6, $s6,$s7
+	lw $t2,R($s4)
+	add $t2,$s6,$t2
+	sw $t2,R,($s4)
 	j for2
-contine:	add $s4,$s4,4
-	j main:
+
+continue:	add $s4,$s4,4
+	j main
 end:
